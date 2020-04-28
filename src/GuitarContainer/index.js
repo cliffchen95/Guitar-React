@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GuitarList from '../GuitarList';
 
 export default class GuitarContainer extends Component {
   constructor(props) {
@@ -15,18 +16,19 @@ export default class GuitarContainer extends Component {
       console.log(url)
       const res = await fetch(url);
       const json = await res.json();
-      console.log('here is the json')
-      console.log(json);
-
+      this.setState({ guitars: json.data });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
   render() {
+    console.log("here is states in container")
+    console.log(this.state)
     return (
       <React.Fragment>
-        Guitar COntainer 
+        <h2>Guitars!!</h2>
+        <GuitarList guitars={this.state.guitars} />
       </React.Fragment>
     )
   }
