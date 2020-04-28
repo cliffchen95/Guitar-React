@@ -5,7 +5,7 @@ import GuitarNewForm from '../GuitarNewForm';
 export default class GuitarContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       guitars: [],
       newGuitar: false
     }
@@ -18,7 +18,6 @@ export default class GuitarContainer extends Component {
   getGuitar = async () => {
     try {
       const url = process.env.REACT_APP_API_URL + '/';
-      console.log(url)
       const res = await fetch(url);
       const json = await res.json();
       this.setState({ guitars: json.data });
@@ -28,9 +27,22 @@ export default class GuitarContainer extends Component {
   }
 
   // submit new guitar info
-  addGuitar = (guitar) => {
-    console.log(guitar)
+  addGuitar = async (newGuitar) => {
+    try {
+      const url = process.env.REACT_APP_API_URL + '/';
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newGuitar)
+      });
+      const json = await res.json();
+      console.log(json)
+
+    } catch (err) {
+      console.log(err)
+    }
   }
+
   render() {
     console.log("here is states in container")
     console.log(this.state)

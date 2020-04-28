@@ -16,7 +16,12 @@ export default class GuitarNewForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.addGuitar(this.state);
+    const guitar = {
+      name: this.state.name,
+      price: this.state.price,
+      is_electric: this.state.isElectric
+    }
+    this.props.addGuitar(guitar);
   }
 
   render() {
