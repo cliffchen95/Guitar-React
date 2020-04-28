@@ -36,8 +36,26 @@ export default class GuitarContainer extends Component {
         body: JSON.stringify(newGuitar)
       });
       const json = await res.json();
-      console.log(json)
+      if (json.status == 201) {
+        this.setState({ guitars: [...this.state.guitars, newGuitar ]})
+      }
 
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  // delete guitar
+  deleteGuitar = async (guitarId) => {
+    try {
+      const url = process.env.REACT_APP_API_URL + '/' + guitarId;
+      const res = await fetch(url, { method: 'DELETE' });
+      const json = await res.json();
+      if (json.status == 200) {
+        this.setState({
+          guitars: this.state.guitars.filter( guitar => guitar.id !== guitarId)
+        })
+      }
     } catch (err) {
       console.log(err)
     }
@@ -53,7 +71,10 @@ export default class GuitarContainer extends Component {
           ? <GuitarNewForm addGuitar={this.addGuitar} /> 
           : <button onClick={ () => this.setState({ newGuitar: true }) }>New Guitar</button>
         }
-        <GuitarList guitars={this.state.guitars} />
+        <GuitarList 
+          guitars={this.state.guitars} 
+          onDelete={this.deleteGuitar}
+        />
       </React.Fragment>
     )
   }

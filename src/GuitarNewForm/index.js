@@ -22,6 +22,11 @@ export default class GuitarNewForm extends Component {
       is_electric: this.state.isElectric
     }
     this.props.addGuitar(guitar);
+    this.setState({
+      name: "",
+      price: "",
+      isElectric: false
+    })
   }
 
   render() {
