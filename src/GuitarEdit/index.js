@@ -5,9 +5,9 @@ export default class GuitarNewForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      price: "",
-      isElectric: false
+      name: props.name,
+      price: props.price,
+      isElectric: props.isElectric,
     }
   }
 
@@ -21,7 +21,7 @@ export default class GuitarNewForm extends Component {
       price: this.state.price,
       is_electric: this.state.isElectric
     }
-    this.props.addGuitar(guitar);
+    this.props.onEdit(guitar, this.props.id);
     this.setState({
       name: "",
       price: "",
@@ -55,6 +55,7 @@ export default class GuitarNewForm extends Component {
             name='isElectric' 
             label='is electric'
             onChange = {this.toggle}
+            checked = {this.state.isElectric}
           />
         </Form.Field>
         <Button type='submit'>Submit</Button>

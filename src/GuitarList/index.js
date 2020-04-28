@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Button } from 'semantic-ui-react';
+import GuitarEdit from '../GuitarEdit';
 
 export default function GuitarList(props) {
   return (
@@ -20,16 +21,31 @@ export default function GuitarList(props) {
                 </Card.Content>
                 <Card.Content extra>
                   <div className='ui two buttons'>
-                    <Button basic color='green'>
+                    <Button 
+                      basic 
+                      color='green'
+                      onClick={ () => props.onEdit(guitar.id) }
+                    >
                       Edit
                     </Button>
                     <Button 
-                      basic color='red' 
+                      basic 
+                      color='red' 
                       onClick={ () => props.onDelete(guitar.id) }
                     >
                       Delete
                     </Button>
                   </div>
+                  { guitar.edit 
+                    && 
+                    <GuitarEdit
+                      name={guitar.name} i
+                      isElectric={guitar.is_electric} 
+                      price={guitar.price}
+                      onEdit={props.onSubmit}
+                      id={guitar.id}
+                    /> 
+                  }
                 </Card.Content>
               </Card>
             )
