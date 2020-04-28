@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GuitarList from '../GuitarList';
 import GuitarForm from '../GuitarForm';
+import { Button } from 'semantic-ui-react';
 
 export default class GuitarContainer extends Component {
   constructor(props) {
@@ -97,11 +98,18 @@ export default class GuitarContainer extends Component {
     console.log(this.state)
     return (
       <React.Fragment>
-        <h2>Guitars!!</h2>
+        <h1 className='ui header'>Welcome to my Guitar API</h1>
+        <h2 className='ui header'>Here are some Guitars!!</h2>
         { this.state.newGuitar 
           ? <GuitarForm addGuitar={this.addGuitar} /> 
-          : <button onClick={ () => this.setState({ newGuitar: true }) }>New Guitar</button>
+          : <Button 
+              onClick={ () => this.setState({ newGuitar: true }) }
+              fluid
+            > 
+            Put up A New Guitar
+            </Button>
         }
+        <div className="ui divider"></div>
         <GuitarList 
           guitars={this.state.guitars} 
           onDelete={this.deleteGuitar}

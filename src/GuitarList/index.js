@@ -4,7 +4,7 @@ import GuitarEdit from '../GuitarEdit';
 
 export default function GuitarList(props) {
   return (
-    <Card.Group>
+    <Card.Group className="ui four stackable cards">
       {
         props.guitars.map((guitar, key) => {
             return (

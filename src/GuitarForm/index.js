@@ -57,7 +57,7 @@ export default class GuitarNewForm extends Component {
             onChange = {this.toggle}
           />
         </Form.Field>
-        <Button type='submit'>Submit</Button>
+        <Button fluid type='submit'>Submit</Button>
       </Form>
     )
   }
